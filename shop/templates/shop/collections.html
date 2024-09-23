@@ -29,14 +29,16 @@ Collections | Online Shopping
     {% for item in category %}
     <div class="col-md-4 col-lg-3">
         <div class="card my-3">
-            <img src="{{item.image.url}}" class="card-image-top" alt="Categories">
             
+            <img src="{{item.image.url}}" class="card-image-top" alt="Categories">
+            <a href = "#">
             <div class="card-body">
             <hr style="border-color:#b8bfc2">
             <h5 class="card-title text-primary">{{item.name}}</h5>
             <p class="card-text">{{item.description}}</p>
-            <a href="" class="btn btn-primary btn-sm">View</a>
+            {% comment %} <a href="" class="btn btn-primary btn-sm">View</a> {% endcomment %}
             </div>
+        </a>
         </div>
     </div>
     {% endfor %}
