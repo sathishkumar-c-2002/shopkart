@@ -1,0 +1,44 @@
+{% extends "shop/layouts/main.html" %}
+{% load static %}
+
+{% block title %}
+Mobiles | Online Shopping
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">Awesome Products</h4>
+                <hr style="border-color:#b8bfc2">
+            </div>
+            
+            {% for item in products %}
+            <div class="col-md-4 col-lg-3">
+                <div class="card my-3">
+                    {% if item.product_image %}
+                        <img src="{{ item.product_image.url }}" class="card-image-top" alt="Product">
+                    {% else %}
+                        <img src="/path/to/default/image.jpg" class="card-image-top" alt="No Image Available">
+                    {% endif %}
+                    <a href="{% url 'collections' item.name %}">
+                        <div class="card-body">
+                            <hr style="border-color:#b7bfc2">
+                            <h5 class="card-title text-primary">{{ item.name }}</h5>
+                            <p class="card-text">  
+                            <span class="float-start old_price">Rs.<s>{{ item.original_price | stringformat:'d' }}</s>  </span>
+                            <span class="float-end new_price">Rs.{{ item.selling_price  | stringformat:'d'   }}</span>
+                            </p>
+                            {% comment %} <a href="" class="btn btn-primary btn-sm">View</a> {% endcomment %}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        
+        </div>
+    </div>
+</section>
+
+{% endblock content %} 

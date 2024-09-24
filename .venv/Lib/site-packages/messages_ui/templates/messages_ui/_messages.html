@@ -1,0 +1,10 @@
+{% block ich %}{% endblock ich %}
+
+<ul id="messages">
+  {% for message in messages %}
+  <li class="message{% if message.tags %} {{ message.tags }}{% endif %}">
+    <p class="body">{{ message|safe }}</p>
+    <a href="#" class="close">dismiss this message</a>
+  </li>
+  {% endfor %}
+</ul>

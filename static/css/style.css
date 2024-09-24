@@ -19,3 +19,15 @@ a{
     height: 60vh;
     overflow: hidden;
 }
+
+.old_price{
+    color: red;
+    font-weight: bold;
+    
+}
+ 
+.new_price{
+    color: white;
+    background-color: green;
+    font-weight: bold;
+}
