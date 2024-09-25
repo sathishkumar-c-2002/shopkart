@@ -13,16 +13,23 @@ Mobiles | Online Shopping
                 <h4 class="mb-3"> {{products}} Details</h4>
                 <hr style="border-color:#b8bfc2">
             </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'collections' products.category.name %}">Collections</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{products.name}}</li>
+                </ol>
+              </nav>
     
             <div class="col-4 my-3">
                 <img src="{{products.product_image.url}}" class="card-image-top" alt="{{products}}">
             </div>
             <div class="col-8 my-3">
-                <h5 class="text-success"> {{products.name}}</h5>
+                <h5 class="text-success"> {{products.name | upper}}</h5>
                 <p><b>Seller Name:</b> {{products.vendor}} </p>
-                <p style="text-align:justify;"><b>Description:</b> {{products.description}}</p>
-                <h6 class="my-2"><b>Current Price:</b> Rs. <s>{{products.original_price}}</s></h6>
-                <h6 class="my-2"><b>Offer Price:</b> Rs. {{products.selling_price}}</h6>
+                <p style="text-align:justify;">{{products.description}}</p>
+                <h6 class="my-2 text-danger"><b>Current Price:</b> Rs. <s>{{products.original_price}}</s></h6>
+                <h6 class="my-2 text-primary"><b>Offer Price:</b> Rs. {{products.selling_price}}</h6>
                 <div>
                     <button class="btn btn-primary"><i class="fa fa-cart"></i>Add to Cart</button>
                     <button class="btn btn-danger"><i class="fa fa-heart"></i></button>
