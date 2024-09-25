@@ -30,3 +30,26 @@ a{
     background-color: green;
     font-weight: bold;
 }
+
+
+.pic-box{
+    position: relative;
+
+
+}
+.hot{
+    background-color: orangered;
+    color: white;
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    position: absolute;
+    right: 20px ;
+    z-index: 10;
+
+
+}

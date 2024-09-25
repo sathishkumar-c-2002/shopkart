@@ -3,8 +3,8 @@
 
 {% block title %}
 Mobiles | Online Shopping
-{% endblock title %}
 
+{% endblock title %}
 {% block content %}
 <section class="bg-light py-4 my-5" style="min-height:600px;">
     <div class="container">
@@ -21,7 +21,10 @@ Mobiles | Online Shopping
                 </ol>
               </nav>
 
-            <div class="col-4 my-3">
+            <div class="col-4 my-3 pic-box">
+                {% if products.trending  %}
+                <div class="hot">Hot</div>
+                {% endif %}
                 <img src="{{products.product_image.url}}" class="card-image-top" alt="{{products}}">
             </div>
             <div class="col-8 my-3">
