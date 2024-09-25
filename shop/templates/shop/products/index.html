@@ -22,7 +22,7 @@ Mobiles | Online Shopping
                     {% else %}
                         <img src="/path/to/default/image.jpg" class="card-image-top" alt="No Image Available">
                     {% endif %}
-                    <a href="{% url 'collections' item.name %}">
+                    <a href="{% url 'product_details' category_name item.name%}">
                         <div class="card-body">
                             <hr style="border-color:#b7bfc2">
                             <h5 class="card-title text-primary">{{ item.name }}</h5>

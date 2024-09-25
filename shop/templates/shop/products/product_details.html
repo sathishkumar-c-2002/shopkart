@@ -1,0 +1,22 @@
+{% extends "shop/layouts/main.html" %}
+{% load static %}
+
+{% block title %}
+Mobiles | Online Shopping
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3"> Products</h4>
+                <hr style="border-color:#b8bfc2">
+            </div>
+            {{products}}
+           
+        </div>
+    </div>
+</section>
+
+{% endblock content %} 
