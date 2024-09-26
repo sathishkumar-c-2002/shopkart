@@ -11,8 +11,17 @@ def home(request):
     products = Product.objects.filter(trending = 1)    
     return render(request, "shop/index.html", {"products":products})
 
+def login(request):
+    return render(request, "shop/login.html")
+
 def register(request):
     form = CustomerUserForm()
+    if request.method=="POST":
+        form = CustomerUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Registration Successfully. Login Now!")
+            return redirect('/login')
     return render(request, "shop/register.html",{'form':form})
 
 def collections(request):

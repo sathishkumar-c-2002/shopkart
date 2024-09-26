@@ -12,15 +12,15 @@ Mobiles | Online Shopping
             <div class="col-12">
                 <h4 class="mb-3"> {{products}} Details</h4>
                 <hr style="border-color:#b8bfc2">
-            </div>
-            <nav aria-label="breadcrumb">
+                <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
                   <li class="breadcrumb-item"><a href="{% url 'collections' products.category.name %}">Collections</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{products.name}}</li>
                 </ol>
               </nav>
-
+              {% include "shop/inc/message.html" %}
+            </div>
             <div class="col-4 my-3 pic-box">
                 {% if products.trending  %}
                 <div class="hot">Hot</div>
