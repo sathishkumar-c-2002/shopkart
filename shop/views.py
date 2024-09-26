@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from shop.form import *
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.http import *
@@ -11,7 +12,8 @@ def home(request):
     return render(request, "shop/index.html", {"products":products})
 
 def register(request):
-    return render(request, "shop/register.html")
+    form = CustomerUserForm()
+    return render(request, "shop/register.html",{'form':form})
 
 def collections(request):
     category = Category.objects.filter(status = 0)
