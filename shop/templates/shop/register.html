@@ -35,7 +35,7 @@ Reigster | Online Shopping
                             </div>
                         <button type="submit" class ="btn btn-primary">Register</button>
                     </form>
-                    <p class="my-2">Already user?<a href="#">Login Now</a> </p>
+                    <p class="my-2">Already user?<a href="{% url 'login'%}">Login Now</a> </p>
                 </div>
                 <div class="col-6"> 
                             {% if form.errors.username %}

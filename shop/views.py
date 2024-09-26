@@ -11,7 +11,7 @@ def home(request):
     products = Product.objects.filter(trending = 1)    
     return render(request, "shop/index.html", {"products":products})
 
-def login(request):
+def login_page(request):
     return render(request, "shop/login.html")
 
 def register(request):
