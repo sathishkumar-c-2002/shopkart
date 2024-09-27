@@ -36,6 +36,8 @@ Mobiles | Online Shopping
                 <h6 class="my-2 text-primary"><b>Offer Price:</b> Rs. {{products.selling_price}}</h6>
                 <div class = "my-3">
                     {% if products.quantity > 0 %}
+                    <input type="hidden" value="{{products.id}}" id="pid">
+                    {% csrf_token %}
                     <p>
                         <div class="input-group" style="width:150px;">
                             <button class="input-group-text bg-success text-light" id="btnMinus"><i class="fa fa-minus"></i></button>
@@ -45,7 +47,7 @@ Mobiles | Online Shopping
 
                         </div>
                     </p>
-                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="btn btn-primary" id="btnCart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                     {% else %}
                     <button class="btn btn-secondary"><i class="fa fa-minus"></i> Out of stock</button>
                     {% endif %}
@@ -62,13 +64,18 @@ document.addEventListener("DOMContentLoaded",function(event){
     const btnMinus = document.getElementById("btnMinus");
     const txtQty = document.getElementById("txtQty");
     const btnPlus = document.getElementById("btnPlus");
+    const pid = document.getElementById("pid");
+    const tkn = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+    const btnCart = document.getElementById("btnCart");
+
+
 
     btnPlus.addEventListener("click",function(){
         let qty = parseInt(txtQty.value,10);
         qty = isNaN(qty)?0:qty;
         //console.log(qty)
         if (qty<10){
-            qty++
+            qty++;
             txtQty.value = qty;
         }
     });
@@ -77,8 +84,25 @@ document.addEventListener("DOMContentLoaded",function(event){
         qty = isNaN(qty)?0:qty;
         //console.log(qty)
         if (qty>1){
-            qty--
+            qty--;
             txtQty.value = qty;
+        }
+    });
+
+
+    btnCart.addEventListener("click",function(){
+        let qty = parseInt(txtQty.value,10);
+        qty = isNaN(qty)?0:qty;
+
+        if (qty>0){
+            let postObj = {
+               product_qty : qty,
+               pid : pid.value,
+               token : tkn 
+            }
+            console.log(postObj)
+        }else{
+            alert("Please Enter the Quantity");
         }
     });
 
