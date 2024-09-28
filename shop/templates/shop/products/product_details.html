@@ -37,14 +37,12 @@ Mobiles | Online Shopping
                 <div class = "my-3">
                     {% if products.quantity > 0 %}
                     <input type="hidden" value="{{products.id}}" id="pid">
-                    {% csrf_token %}
+
                     <p>
                         <div class="input-group" style="width:150px;">
                             <button class="input-group-text bg-success text-light" id="btnMinus"><i class="fa fa-minus"></i></button>
                             <input type="text" name="qty" id="txtQty" value="1" class="form-control text-center">
                             <button class="input-group-text bg-success text-light" id="btnPlus"><i class="fa fa-plus"></i></button>
-
-
                         </div>
                     </p>
                     <button class="btn btn-primary" id="btnCart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
@@ -52,11 +50,9 @@ Mobiles | Online Shopping
                     <button class="btn btn-secondary"><i class="fa fa-minus"></i> Out of stock</button>
                     {% endif %}
                     <button class="btn btn-danger"><i class="fa fa-heart"></i></button>
-                    
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 <script>
@@ -65,10 +61,8 @@ document.addEventListener("DOMContentLoaded",function(event){
     const txtQty = document.getElementById("txtQty");
     const btnPlus = document.getElementById("btnPlus");
     const pid = document.getElementById("pid");
-    const tkn = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+    const tkn = document.querySelector('[name="csrfmiddlewaretoken"]');
     const btnCart = document.getElementById("btnCart");
-
-
 
     btnPlus.addEventListener("click",function(){
         let qty = parseInt(txtQty.value,10);
@@ -88,19 +82,32 @@ document.addEventListener("DOMContentLoaded",function(event){
             txtQty.value = qty;
         }
     });
-
-
     btnCart.addEventListener("click",function(){
         let qty = parseInt(txtQty.value,10);
         qty = isNaN(qty)?0:qty;
 
         if (qty>0){
             let postObj = {
-               product_qty : qty,
-               pid : pid.value,
-               token : tkn 
+               'product_qty' : qty,
+               'pid' : pid.value
             }
-            console.log(postObj)
+            console.log(postObj);
+            fetch('/addtocart',{
+                method : 'POST',
+                credentials : 'same-origin',
+                headers : {
+                    'Accept' : 'application/json',
+                    //"Content-Type": "application/json",
+                    'X-Requested-With' : 'XMLHttpRequest',
+                    'X-CSRFToken' : '{{csrf_token}}',
+                },
+                body: JSON.stringify(postObj)
+            }).then((response) => {
+                return response.json();
+            }).then((data) => {
+                console.log(data);
+            });
+
         }else{
             alert("Please Enter the Quantity");
         }
