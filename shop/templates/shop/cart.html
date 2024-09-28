@@ -29,7 +29,7 @@ Collections | Online Shopping
             <td>Rs.{{item.product.selling_price | stringformat:'d'}}</td>
             <td>{{item.product_quantity}}</td>
             <td class="amt">{{item.total_cost | stringformat:'d'}}</td>
-            <td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</button></td>
+            <td><a href="{% url 'remove_cart' item.id %}" onclick="return confirm('Are you sure? to Remove')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</a></td>
          </tr>
         {% endfor %}
         <tr>

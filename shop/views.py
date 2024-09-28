@@ -19,6 +19,11 @@ def cart_page(request):
     else:
         return redirect("/")
 
+def remove_cart(request,cid):
+    cartitem = Cart.objects.get(id=cid)
+    cartitem.delete()
+    return redirect("/cart")
+
 def add_to_cart(request):
     if request.headers.get('x-requested-with')=='XMLHttpRequest':
         if request.user.is_authenticated:
