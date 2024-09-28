@@ -92,22 +92,20 @@ document.addEventListener("DOMContentLoaded",function(event){
                'pid' : pid.value
             }
             console.log(postObj);
-            fetch('/addtocart',{
-                method : 'POST',
-                credentials : 'same-origin',
-                headers : {
-                    'Accept' : 'application/json',
-                    //"Content-Type": "application/json",
-                    'X-Requested-With' : 'XMLHttpRequest',
-                    'X-CSRFToken' : '{{csrf_token}}',
+            fetch("/addtocart",{
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{csrf_token}}'
                 },
                 body: JSON.stringify(postObj)
-            }).then((response) => {
+            }).then(response => {
                 return response.json();
-            }).then((data) => {
-                console.log(data);
+            }).then(data => {
+                alert(data['status']);
             });
-
         }else{
             alert("Please Enter the Quantity");
         }

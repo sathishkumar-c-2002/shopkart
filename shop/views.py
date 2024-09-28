@@ -26,7 +26,7 @@ def add_to_cart(request):
                     return JsonResponse({'status': 'Product Already in Cart'},status=200)                    
                 else:
                     if product_status.quantity>=product_qty:
-                        Cart.objects.create(user=request.user,product_id=product_id,product_qty=product_qty)
+                        Cart.objects.create(user=request.user,product_id=product_id,product_quantity=product_qty)
                         return JsonResponse({'status': 'Product Added in Cart'},status=200)                    
                     else:
                         return JsonResponse({'status': 'Product Not Available'},status=200)                    
