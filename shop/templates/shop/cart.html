@@ -28,7 +28,7 @@ Collections | Online Shopping
             <td>{{item.product.name}}</td>
             <td>Rs.{{item.product.selling_price | stringformat:'d'}}</td>
             <td>{{item.product_quantity}}</td>
-            <td class="amt">Rs.{{item.total_cost | stringformat:'d'}}</td>
+            <td class="amt">{{item.total_cost | stringformat:'d'}}</td>
             <td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</button></td>
          </tr>
         {% endfor %}
@@ -45,5 +45,13 @@ Collections | Online Shopping
     </div>
 </div>
 </section>
+<script>
+    const nodes = document.querySelectorAll('.amt')
+    const arr = Array.from(nodes);
+    const res = arr.reduce((acc,curr)=> {
+    return acc += Number (curr.textContent)
+    },0);
+    document.getElementById("net").innerHTML="Rs:"+res;
+</script>
 
 {% endblock content %} 
